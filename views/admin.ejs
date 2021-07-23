@@ -1,0 +1,44 @@
+<%-include("header")%>
+<div class="admin">
+    <div class="containadmin row">
+        <a href="/oldorders" class="btn btn-info">Old Orders</a>
+        <table class="admin-page">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Products</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%orders.forEach(item=>{%>
+                    <tr>
+                        <td class="name"> <a href="admin/<%=item._id%>/delete" class="btn "> <i
+                            class="fas fa-check-circle"> </i> </a><%=item.username%></td>
+                            <td class="date"><%=item.date.toLocaleString('en-US', {
+                                weekday: 'short', 
+                                day: 'numeric',
+                                year: 'numeric', 
+                                month: 'long', 
+                                hour: 'numeric', 
+                                minute: 'numeric', 
+                            })%></td>
+                        <td><%=item.phone%></td>
+                        <td class="address"><%=item.address%></td>
+                        <td>
+                            <%item.products.forEach(pdt=>{%>
+                                <li><%=pdt.name%> - <%=pdt.quantity%></li>
+                            <%})%>
+                        </td>
+
+                        <td class="total">Rs.<%=item.total%></td>                        
+                    </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
+</div>
+<%-include("footer")%>
